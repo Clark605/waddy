@@ -1,0 +1,53 @@
+
+
+Step Points Implementation:
+
+1.  Data  Setup (low level module)$:
+    *   DataSources:  Define classes responsible for fetching data from various sources. These might be:
+        *   **RemoteDatasource:** For external APIs (REST, GraphQL, etc.).
+        *   **LocalDatasource:** For local storage (SQLite, shared preferences).
+        *   **FirebaseDatasource:** For Firebase services.
+
+    *   Models(DTOs data transfer objects): Define classes that represent the structure of data as it comes from the dataSources.
+        These models are often specific to the data format (e.g., JSON from an API).
+        Data mapping logic might be here,converting between models and entities.
+
+    *   Repositories (Implementations): Implement the repository interfaces defined in the business layer.
+        In this implementation, you will use `datasources` to retrieve data and then transform it into `entities`.
+
+    * Mappers (optional)
+
+2.  Business (Domain) Setup (higher level module)$:
+    *   Repositories (Interfaces): Define abstract classes (interfaces) that declare methods for interacting with data.
+          These are contracts that specify what operations can be performed on the data (e.g., `UserRepository`, `ProductRepository`).
+
+    *   Entities: Define the core business objects and their properties for the UI.
+         These are plain Dart classes that represent the data relevant to your application's domain (e.g., `User`, `Product`, `Order`).
+         Entities made by the Business requirement by companies
+
+    *   UseCases: Implement the specific business rules and application logic.
+          Each use case represents a specific action that can be performed in the application
+          (e.g., `LoginUseCase`, `GetProductDetailsUseCase`). UseCases interact with repositories to get and manipulate data.
+
+3.  Presentation  Setup(highest level module)$:
+    *   Pages: Create screens for your app.A page can contain several widgets.
+
+    *   State Management: Choose a state management solution and apply it. Popular options include:
+        *   **Riverpod:** Provides a way to access and manage state globally, without the need for widget trees.
+        *   **BloC (Business Logic Component):** A pattern for separating the business logic from the UI.
+        *   **GetX:** A microframework with features for state management, dependency injection, and route management.
+
+    *   Widgets: Create reusable UI elements. Widgets should be small, focused, and responsible for a specific part of the UI.
+        You can build complex UIs by composing smaller widgets.
+
+
+
+
+Business: Security, caches, logs, exceptions, validations, and the logic
+Data: Internal & external data, Api
+Presentation: User interface and user experience
+
+$ (independence inversion principle)high level modules and low level modules should not be dependent on each other , should not interact with each other.
+  no tight coupling.
+
+
